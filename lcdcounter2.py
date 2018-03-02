@@ -95,23 +95,23 @@ def main():
   lcd_init()
 
   sensor = GPIO.input(11)			#receive an input from sensor
-  while (sensor):
+  while (True):
 	if sensor==0:                 	#When output from motion sensor
 		GPIO.output(7, 0)  			#Turn off LED
+		lcd_string("power off   <",LCD_LINE_1)
 	elif sensor==1:
 		GPIO.output(7, 1)  			#Turn on LED
 		i = 30;
 		while i != 0:				#countdown
 			# Send some test
-			lcd_string("i         <",LCD_LINE_1)
-			lcd_string("it works  <",LCD_LINE_2)
+			lcd_string("counting <",LCD_LINE_1)
+			lcd_string(i,"       <",LCD_LINE_2)
 			time.sleep(1)
 			i -= 1
 
 		sensor == 0				#turn off sensor after 30 seconds
 
 if __name__ == '__main__':
-
   try:
     main()
 	
